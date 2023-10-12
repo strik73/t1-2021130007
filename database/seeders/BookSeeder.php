@@ -17,7 +17,7 @@ class BookSeeder extends Seeder
 
         for ($i = 0; $i < 25; $i++) {
 
-            $isbn = $faker->text(13);
+            $isbn = $faker->regexify('[A-Z]{5}[0-9]{8}');
             $judul = $faker->sentence(5);
             $halaman = $faker->numberBetween(0, 300);
             $kategori = $faker->text(5);

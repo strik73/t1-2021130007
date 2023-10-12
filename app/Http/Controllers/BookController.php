@@ -39,15 +39,15 @@ class BookController extends Controller
         ]);
 
         $article = Book::create([
-            'title' => $validated['title'],
-            'body' => $validated['body'],
+            'isbn' => $validated['isbn'],
             'judul' => $validated['judul'],
             'halaman' => $validated['halaman'],
+            'kategori' => $validated['kategori'],
             'penerbit' => $validated['penerbit'],
 
         ]);
 
-        return redirect()->route('book.index')->with('success', 'Article added.');
+        return redirect()->route('books.index')->with('success', 'Book added.');
     }
 
     /**
