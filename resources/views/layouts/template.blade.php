@@ -36,7 +36,9 @@
         </header>
 
         <div class="nav-scroller py-1 mb-2">
-
+            <nav class="nav d-flex justify-content-between">
+                <h4><a class="p-2 link-secondary" href="{{route('landing')}}">Home</a></h4>
+                <h4><a class="p-2 link-secondary" href="{{route('books.index')}}">Book List</a></h4>
         </div>
     </div>
 

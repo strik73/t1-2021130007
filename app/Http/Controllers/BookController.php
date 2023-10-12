@@ -38,7 +38,7 @@ class BookController extends Controller
             'penerbit' => 'required|string',
         ]);
 
-        $article = Book::create([
+        $book = Book::create([
             'isbn' => $validated['isbn'],
             'judul' => $validated['judul'],
             'halaman' => $validated['halaman'],
@@ -63,7 +63,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('books.edit', compact('book'));
     }
 
     /**
@@ -71,7 +71,24 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $validated = $request->validate([
+            'isbn' => 'required|string|min:13|max:13',
+            'judul' => 'required|string',
+            'halaman' => 'required|numeric',
+            'kategori' => 'required|string',
+            'penerbit' => 'required|string',
+        ]);
+
+        $book->update([
+            'isbn' => $validated['isbn'],
+            'judul' => $validated['judul'],
+            'halaman' => $validated['halaman'],
+            'kategori' => $validated['kategori'],
+            'penerbit' => $validated['penerbit'],
+
+        ]);
+
+        return redirect()->route('books.index')->with('success', 'Book updated.');
     }
 
     /**
@@ -79,6 +96,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->route('books.index')->with('success', 'Book deleted successfully.');
     }
 }
